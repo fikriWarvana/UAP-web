@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Barang</title>
+  <style>
+    table {
+      width: 50%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      display: flex;
+    }
+
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    #totalHarga {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<table>
+  <tr>
+    <th>Kode</th>
+    <th>Barang</th>
+    <th>Harga</th>
+  </tr>
+  <tr>
+    <td>001</td>
+    <td>Barang A</td>
+    <td>10.000</td>
+  </tr>
+  <tr>
+    <td>002</td>
+    <td>Barang B</td>
+    <td>20.000</td>
+  </tr>
+  <tr>
+    <td>003</td>
+    <td>Barang C</td>
+    <td>30.000</td>
+  </tr>
+</table>
+
+<label for="kode">Masukkan Kode:</label>
+<input type="text" id="kode">
+<br>
+<label for="jumlah">Banyaknya Barang:</label>
+<input type="text" id="jumlah" style="width: 145px;">
+<br>
+<button onclick="hitungTotal()">Submit</button>
+
+
+<script>
+  function hitungTotal() {
+    var kodeInput = document.getElementById('kode').value;
+    var jumlahInput = document.getElementById('jumlah').value;
+    var harga = 0;
+    switch (kodeInput) {
+      case '001':
+        harga = 10000;
+        break;
+      case '002':
+        harga = 20000;
+        break;
+      case '003':
+        harga = 30000;
+        break;
+      default:
+        alert('Kode barang tidak valid');
+        return;
+    }
+
+    var totalHarga = harga * jumlahInput;
+    alert('Total Harga: ' + totalHarga);
+    var pembayaran = prompt('Masukkan jumlah uang yang akan dibayarkan:');
+
+    if (pembayaran === null || pembayaran === ''){
+        alert('Pembayaran di batalkan');
+        return;
+    }
+    pembayaran = parseFloat(pembayaran);
+    if (isNaN(pembayaran)) {
+      alert('Masukkan jumlah uang yang valid.');
+      return;
+    }
+
+    var kembalian = pembayaran - totalHarga;
+    alert('Total kembalian anda adalah: ' + kembalian);
+  }
+</script>
+
+</body>
+</html>
